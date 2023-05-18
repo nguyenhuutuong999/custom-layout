@@ -1,0 +1,33 @@
+.layout{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+}
+
+.container {
+  text-align: center;
+  margin: 20px;
+}
+
+.container img {
+  width: 200px;
+  height: auto;
+}
+
+.container .heading {
+  font-size: 24px;
+  color: #333;
+  cursor: pointer;
+}
+
+.container .paragraph {
+  font-size: 16px;
+  color: #666;
+  margin-top: 10px;
+}
+
+.border{
+  border: 1px solid red;
+}
