@@ -1,7 +1,8 @@
-import React, { useEffect, useInsertionEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Layout.module.css";
 import Content from "../../components/Content";
 import CustomContent from "../../components/Custom";
+import { useLocation } from "react-router-dom";
 
 const Layout = () => {
   const [border, setBorder] = useState({
@@ -9,6 +10,9 @@ const Layout = () => {
     head: false,
     para: false,
   });
+
+  const location = useLocation();
+  const param = location.pathname.slice(-1);
 
   const [isOpen, setIsOpen] = useState(false);
   const [name, setName] = useState(null);
@@ -52,7 +56,10 @@ const Layout = () => {
   const [preview, setPreview] = useState();
 
   const updateDate = async newData => {
-    await localStorage.setItem("theme", JSON.stringify(newData));
+    const getData = JSON.parse(await localStorage.getItem("data"));
+    const newGetData = [...getData];
+    newGetData[param].data = newData
+    await localStorage.setItem("data", JSON.stringify(newGetData));
   };
 
   const onBorder = name => {
@@ -172,16 +179,9 @@ const Layout = () => {
     return () => URL.revokeObjectURL(objectUrl);
   }, [selectedFile]);
 
-  useInsertionEffect(() => {
-    const getData = JSON.parse(localStorage.getItem("theme"));
-    if (!getData) {
-      localStorage.setItem("theme", JSON.stringify(listCompDefault));
-    }
-  }, []);
-
   useEffect(() => {
-    const getData = JSON.parse(localStorage.getItem("theme"));
-    if (getData) setListComp(getData);
+    const getData = JSON.parse(localStorage.getItem("data"));
+    if (getData && getData.length !== 0) setListComp(getData[param].data);
   }, []);
 
   return (
