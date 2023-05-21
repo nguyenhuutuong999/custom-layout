@@ -1,13 +1,18 @@
-import "./../../index.css"
-import pictureIcon from "./../../assets/picture.png";
+import "./../../index.css";
 
-function Image({border, onBorder}) {
+function Image({ border, onBorder, style, imageURL, content }) {
   return (
     <div
-      className={`${border ? "border" : ""}`}
+      className={`image ${border ? "border" : ""}`}
       onClick={() => onBorder("image")}
+      id={"bannder"}
     >
-      <img src={pictureIcon} alt="Image" />
+      <img
+        className={`image ${border ? "border" : ""}`}
+        style={{ objectFit: "contain", ...style }}
+        src={imageURL ? imageURL : content}
+        alt="Image"
+      />
     </div>
   );
 }

@@ -86,3 +86,10 @@ section h1 {
 .border{
     border: 1px solid red;
 }
+.image{
+    cursor: pointer;
+}
+
+#upload_photo {
+    visibility: hidden;
+}
